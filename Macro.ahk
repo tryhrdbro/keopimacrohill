@@ -638,10 +638,44 @@ ShouldStopUpgrading(sleepamount := 300) {
 FindAndClickColor(searchArea := [0, 0, A_ScreenWidth, A_ScreenHeight]) {
     ; Extract the search area boundaries
     x1 := searchArea[1], y1 := searchArea[2], x2 := searchArea[3], y2 := searchArea[4]
-    targetColor := 0x006783
+    targetColor := 0x00E810
+    SendInput("{5}")
     ; Perform the pixel search
     if (PixelSearch(&foundX, &foundY, x1, y1, x2, y2, targetColor, 0)) {
         ; Color found, click on the detected coordinates
+        SendInput("{q}")
+        BetterClick(foundX, foundY, "Right")
+        AddToLog("Hill found and clicked at: X" foundX " Y" foundY)
+        return true
+    } else 
+    targetColor := 0x00E300
+    if (PixelSearch(&foundX, &foundY, x1, y1, x2, y2, targetColor, 0)) {
+        ; Color found, click on the detected coordinates
+        SendInput("{q}")
+        BetterClick(foundX, foundY, "Right")
+        AddToLog("Hill found and clicked at: X" foundX " Y" foundY)
+        return true
+    } else 
+    targetColor := 0x00F420
+    if (PixelSearch(&foundX, &foundY, x1, y1, x2, y2, targetColor, 0)) {
+        ; Color found, click on the detected coordinates
+        SendInput("{q}")
+        BetterClick(foundX, foundY, "Right")
+        AddToLog("Hill found and clicked at: X" foundX " Y" foundY)
+        return true
+    } else 
+    targetColor := 0x00EB08
+    if (PixelSearch(&foundX, &foundY, x1, y1, x2, y2, targetColor, 0)) {
+        ; Color found, click on the detected coordinates
+        SendInput("{q}")
+        BetterClick(foundX, foundY, "Right")
+        AddToLog("Hill found and clicked at: X" foundX " Y" foundY)
+        return true
+    } else 
+    targetColor := 0x00FFFF
+    if (PixelSearch(&foundX, &foundY, x1, y1, x2, y2, targetColor, 0)) {
+        ; Color found, click on the detected coordinates
+        SendInput("{q}")
         BetterClick(foundX, foundY, "Right")
         AddToLog("Hill found and clicked at: X" foundX " Y" foundY)
         return true
@@ -649,6 +683,7 @@ FindAndClickColor(searchArea := [0, 0, A_ScreenWidth, A_ScreenHeight]) {
     targetColor := 0x006783
     if (PixelSearch(&foundX, &foundY, x1, y1, x2, y2, targetColor, 0)) {
         ; Color found, click on the detected coordinates
+	SendInput("{q}")
         BetterClick(foundX, foundY, "Right")
         AddToLog("Base found and clicked at: X" foundX " Y" foundY)
         return true
@@ -917,6 +952,7 @@ TapToMove(toggle) {
 }
 
 OnSpawnSetup() {
+    BetterClick(145, 60)
     SendInput ("{Tab}")
     LookDown()
     Sleep 200
