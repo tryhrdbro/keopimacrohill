@@ -635,18 +635,25 @@ ShouldStopUpgrading(sleepamount := 300) {
     }
 }
 
-FindAndClickColor(targetColor := 0x006783, searchArea := [0, 0, A_ScreenWidth, A_ScreenHeight]) {
+FindAndClickColor(searchArea := [0, 0, A_ScreenWidth, A_ScreenHeight]) {
     ; Extract the search area boundaries
     x1 := searchArea[1], y1 := searchArea[2], x2 := searchArea[3], y2 := searchArea[4]
-
+    targetColor := 0x006783
     ; Perform the pixel search
     if (PixelSearch(&foundX, &foundY, x1, y1, x2, y2, targetColor, 0)) {
         ; Color found, click on the detected coordinates
         BetterClick(foundX, foundY, "Right")
-        AddToLog("Color found and clicked at: X" foundX " Y" foundY)
+        AddToLog("Hill found and clicked at: X" foundX " Y" foundY)
         return true
-
-    } else {
+    } else 
+    targetColor := 0x006783
+    if (PixelSearch(&foundX, &foundY, x1, y1, x2, y2, targetColor, 0)) {
+        ; Color found, click on the detected coordinates
+        BetterClick(foundX, foundY, "Right")
+        AddToLog("Base found and clicked at: X" foundX " Y" foundY)
+        return true
+    }  
+    else{
     }
 }
 
